@@ -29,10 +29,10 @@ CREATE TABLE commande(
     CONSTRAINT pk_commande PRIMARY KEY(fno, pno),
     CONSTRAINT fk_fournisseur FOREIGN KEY(fno)
         REFERENCES fournisseurs(fno)
-        ON UPDATE CASCADE ON DELETE SET NULL,
+        ON UPDATE CASCADE ON DELETE CASCADE, -- ON DELETE SET NULL : au lieu d'effacer met null
     CONSTRAINT fk_produit FOREIGN KEY(pno)
         REFERENCES produit(pno)
-        ON UPDATE CASCADE ON DELETE SET NULL
+        ON UPDATE CASCADE ON DELETE CASCADE  -- ON DELETE SET NULL : au lieu d'effacer met null 
 );
 
 -- Q2: insertion dans fournisseurs
@@ -63,6 +63,6 @@ INSERT INTO commande(fno, pno, prix, qute) VALUES(2, 3, 45, 4);
 SELECT * FROM commande;
 -- Q6: On detruit un produit
 
-DELETE FROM produit WHERE pno = 1;
+DELETE FROM produit WHERE pno = 2;
 
 SELECT * FROM commande;
